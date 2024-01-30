@@ -1,0 +1,21 @@
+on:
+  workflow_dispatch
+
+name: test
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@master
+    - uses: r-lib/actions/setup-r@master
+
+    - name: Install spatial dependencies
+      run: brew install gdal proj
+
+    - name: Install packages
+      run: R -e 'install.packages("terra")'
+
+    - name: Test script
+      run: Rscript test.R
