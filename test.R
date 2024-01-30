@@ -1,3 +1,5 @@
+install.packages("terra")
+
 library(terra)
 r <- terra::rast(ncols=100, nrows=100)
 values(r) <- 1:ncell(r)
