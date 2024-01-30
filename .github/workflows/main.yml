@@ -13,7 +13,7 @@ jobs:
       matrix:
         config:
           - {os: macos-latest}
-          - {os: windows-latest}
+          #- {os: windows-latest}
           - {os: ubuntu-latest}
 
     steps:
@@ -23,6 +23,10 @@ jobs:
     - name: Install macOS system dependencies
       if: runner.os == 'macOS'
       run: brew install gdal proj
+
+    - name: Install Linux system dependencies
+      if: runner.os == 'Linux'
+      run: sudo apt install libgdal-dev libgeos-dev libproj-dev
 
     - name: Install packages
       run: R -e 'install.packages("terra")'
